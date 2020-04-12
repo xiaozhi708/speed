@@ -21,8 +21,8 @@ LEARNING_RATE = 0.0002
 PRETRAINED_MODEL = './resnet50-19c8e357.pth'
 
 ##训练完成，权重文件的保存路径,默认保存在trained_models下
-TRAINED_MODEL = 'trained_models/vehicle-10_record.pth'
+# TRAINED_MODEL = 'trained_models/vehicle-10_record.pth'
 
 #数据集的存放位置
 TRAIN_DATASET_DIR = './Caltech/train'
-VALID_DATASET_DIR = './Caltech/val'
+VALID_DATASET_DIR = './Caltech/test'

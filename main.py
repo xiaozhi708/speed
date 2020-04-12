@@ -35,23 +35,10 @@ def loaddata():
          ])
 
     val_transforms = transforms.Compose(
-        [transforms.Resize(256),
-         transforms.CenterCrop(224),
+        [transforms.Resize((256,256)),
          transforms.ToTensor(),
          transforms.Normalize([0.485, 0.456, 0.406],
                               [0.229, 0.224, 0.225])])
-    # train_transforms = transforms.Compose([
-    #     transforms.RandomResizedCrop(224),
-    #     transforms.RandomHorizontalFlip(),
-    #     transforms.ToTensor(),
-    #     transforms.Normalize((.5, .5, .5), (.5, .5, .5))
-    # ])
-    # val_transforms = transforms.Compose([
-    #     transforms.Resize(256),
-    #     transforms.RandomResizedCrop(224),
-    #     transforms.ToTensor(),
-    #     transforms.Normalize((.5, .5, .5), (.5, .5, .5))
-    # ])
 
     train_datasets = datasets.ImageFolder(train_directory, transform=train_transforms)
     train_dataloader = torch.utils.data.DataLoader(train_datasets, batch_size=batch_size, shuffle=True)
@@ -71,11 +58,10 @@ def ResNet50():
         param.requires_grad = False
     fc_inputs = net.fc.in_features
     net.fc = nn.Sequential(
-        nn.Linear(fc_inputs, 256),
+        nn.Linear(fc_inputs, 512),
         nn.ReLU(),
-        nn.Dropout(0.4),
-        nn.Linear(256, num_classes),
-        nn.LogSoftmax(dim=1)
+        nn.Dropout(),
+        nn.Linear(512, num_classes)
     )
     return net
 
@@ -84,13 +70,8 @@ def GoogleNet():
     for param in net.parameters():
         param.requires_grad = False
     fc_inputs = net.fc.in_features
-    net.fc = nn.Sequential(
-        nn.Linear(fc_inputs, 256),
-        nn.ReLU(),
-        nn.Dropout(0.4),
-        nn.Linear(256, num_classes),
-        nn.LogSoftmax(dim=1)
-    )
+    net.fc = nn.Linear(fc_inputs, num_classes)
+        
     return net
 
 class DenseNet121(nn.Module):
@@ -100,7 +81,6 @@ class DenseNet121(nn.Module):
         for param in net.parameters():
             param.requires_grad = False
         fc_inputs = net.classifier.in_features
-        print(fc_inputs)
         self.features = net.features#必须是net.features不能是net
         self.classifier = nn.Sequential(
             nn.Linear(fc_inputs, 512),
@@ -231,8 +211,8 @@ def train_and_valid(model,train_data_size,train_dataloader,valid_data_size,val_d
 
 
 if __name__=='__main__':
-    # model = ResNet50()
-    model = VGGNet()
+    model = ResNet50()
+    # model = VGGNet()
     # model = DenseNet121()
     # model = GoogleNet()
     loss_func = nn.CrossEntropyLoss()
