@@ -61,7 +61,7 @@ if __name__ == "__main__":
 
   res = find_all_files(path, suffix)
 
-  train_list, val_list = train_test_split(res, test_size=0.3,random_state=42)
+  train_list, val_list = train_test_split(res, test_size=0.5,random_state=42)
   for i in train_list:
     catalog_name = i.split("/")[-2]  # 得到图片的种类名
     text_append_write(out_path + "train/", "train_catalog", i+" "+catalog_name)
