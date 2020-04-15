@@ -1,1 +1,7 @@
 ×.pth filter=lfs diff=lfs merge=lfs -text
+densenet121.pth filter=lfs diff=lfs merge=lfs -text
+googlenet.pth filter=lfs diff=lfs merge=lfs -text
+mobilenetv2.pth filter=lfs diff=lfs merge=lfs -text
+resnet50.pth filter=lfs diff=lfs merge=lfs -text
+shufflenetv2_x1_0.pth filter=lfs diff=lfs merge=lfs -text
+vgg16_bn.pth filter=lfs diff=lfs merge=lfs -text
