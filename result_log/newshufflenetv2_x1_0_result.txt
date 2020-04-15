@@ -1,0 +1,152 @@
+epochs:50
+epoch 1
+Train Loss: 3.517822, Acc: 23.984375
+Valid Loss: 2.930863, Acc: 35.532070
+epoch 2
+Train Loss: 2.567077, Acc: 38.953125
+Valid Loss: 2.101532, Acc: 46.683673
+epoch 3
+Train Loss: 1.932575, Acc: 50.515625
+Valid Loss: 1.549062, Acc: 60.750729
+epoch 4
+Train Loss: 1.548142, Acc: 59.531250
+Valid Loss: 1.281284, Acc: 64.176385
+epoch 5
+Train Loss: 1.322362, Acc: 64.296875
+Valid Loss: 1.132001, Acc: 68.258017
+epoch 6
+Train Loss: 1.147028, Acc: 69.078125
+Valid Loss: 1.022685, Acc: 70.335277
+epoch 7
+Train Loss: 1.018622, Acc: 72.328125
+Valid Loss: 0.894099, Acc: 73.505831
+epoch 8
+Train Loss: 0.905801, Acc: 74.984375
+Valid Loss: 0.768466, Acc: 77.077259
+epoch 9
+Train Loss: 0.834750, Acc: 75.968750
+Valid Loss: 0.710553, Acc: 79.263848
+epoch 10
+Train Loss: 0.755976, Acc: 78.500000
+Valid Loss: 0.687004, Acc: 79.336735
+epoch 11
+Train Loss: 0.722867, Acc: 79.609375
+Valid Loss: 0.662900, Acc: 80.138484
+epoch 12
+Train Loss: 0.670296, Acc: 81.187500
+Valid Loss: 0.631168, Acc: 81.195335
+epoch 13
+Train Loss: 0.627661, Acc: 81.968750
+Valid Loss: 0.596054, Acc: 82.252187
+epoch 14
+Train Loss: 0.609654, Acc: 82.343750
+Valid Loss: 0.597811, Acc: 82.215743
+epoch 15
+Train Loss: 0.552151, Acc: 83.812500
+Valid Loss: 0.600344, Acc: 80.940233
+epoch 16
+Train Loss: 0.538461, Acc: 84.171875
+Valid Loss: 0.575905, Acc: 81.413994
+epoch 17
+Train Loss: 0.530837, Acc: 84.562500
+Valid Loss: 0.615841, Acc: 81.851312
+epoch 18
+Train Loss: 0.510400, Acc: 85.156250
+Valid Loss: 0.510206, Acc: 84.948980
+epoch 19
+Train Loss: 0.500227, Acc: 85.531250
+Valid Loss: 0.493600, Acc: 85.167638
+epoch 20
+Train Loss: 0.459803, Acc: 86.843750
+Valid Loss: 0.494937, Acc: 85.860058
+epoch 21
+Train Loss: 0.451284, Acc: 86.828125
+Valid Loss: 0.503062, Acc: 84.876093
+epoch 22
+Train Loss: 0.427054, Acc: 87.578125
+Valid Loss: 0.537280, Acc: 84.220117
+epoch 23
+Train Loss: 0.441961, Acc: 86.875000
+Valid Loss: 0.483688, Acc: 85.641399
+epoch 24
+Train Loss: 0.422928, Acc: 87.828125
+Valid Loss: 0.506948, Acc: 84.183673
+epoch 25
+Train Loss: 0.395223, Acc: 88.562500
+Valid Loss: 0.467365, Acc: 85.604956
+epoch 26
+Train Loss: 0.384684, Acc: 88.859375
+Valid Loss: 0.474274, Acc: 86.042274
+epoch 27
+Train Loss: 0.384535, Acc: 88.843750
+Valid Loss: 0.477554, Acc: 85.349854
+epoch 28
+Train Loss: 0.366567, Acc: 89.484375
+Valid Loss: 0.527664, Acc: 84.220117
+epoch 29
+Train Loss: 0.363486, Acc: 89.000000
+Valid Loss: 0.489469, Acc: 85.058309
+epoch 30
+Train Loss: 0.343610, Acc: 90.125000
+Valid Loss: 0.459613, Acc: 86.370262
+epoch 31
+Train Loss: 0.343784, Acc: 89.531250
+Valid Loss: 0.428902, Acc: 87.827988
+epoch 32
+Train Loss: 0.331971, Acc: 90.171875
+Valid Loss: 0.450445, Acc: 86.588921
+epoch 33
+Train Loss: 0.319209, Acc: 90.828125
+Valid Loss: 0.463439, Acc: 85.969388
+epoch 34
+Train Loss: 0.321888, Acc: 90.546875
+Valid Loss: 0.408002, Acc: 88.010204
+epoch 35
+Train Loss: 0.313534, Acc: 91.062500
+Valid Loss: 0.493639, Acc: 84.766764
+epoch 36
+Train Loss: 0.329116, Acc: 90.265625
+Valid Loss: 0.417277, Acc: 87.281341
+epoch 37
+Train Loss: 0.288899, Acc: 91.359375
+Valid Loss: 0.538709, Acc: 83.965015
+epoch 38
+Train Loss: 0.280748, Acc: 91.562500
+Valid Loss: 0.461313, Acc: 85.422741
+epoch 39
+Train Loss: 0.279179, Acc: 91.531250
+Valid Loss: 0.546083, Acc: 83.709913
+epoch 40
+Train Loss: 0.285575, Acc: 91.375000
+Valid Loss: 0.477123, Acc: 85.313411
+epoch 41
+Train Loss: 0.261634, Acc: 92.546875
+Valid Loss: 0.411816, Acc: 87.682216
+epoch 42
+Train Loss: 0.263239, Acc: 92.343750
+Valid Loss: 0.461200, Acc: 86.333819
+epoch 43
+Train Loss: 0.251991, Acc: 92.781250
+Valid Loss: 0.431880, Acc: 86.844023
+epoch 44
+Train Loss: 0.259164, Acc: 92.234375
+Valid Loss: 0.467874, Acc: 85.860058
+epoch 45
+Train Loss: 0.253205, Acc: 92.546875
+Valid Loss: 0.491133, Acc: 84.912536
+epoch 46
+Train Loss: 0.249882, Acc: 92.781250
+Valid Loss: 0.462391, Acc: 86.224490
+epoch 47
+Train Loss: 0.254969, Acc: 92.234375
+Valid Loss: 0.414690, Acc: 87.500000
+epoch 48
+Train Loss: 0.239849, Acc: 92.781250
+Valid Loss: 0.427084, Acc: 87.281341
+epoch 49
+Train Loss: 0.235381, Acc: 93.343750
+Valid Loss: 0.430615, Acc: 86.807580
+epoch 50
+Train Loss: 0.248468, Acc: 92.765625
+Valid Loss: 0.457573, Acc: 86.078717
+Best Accuracy for validation : 0.880102 at epoch 034
