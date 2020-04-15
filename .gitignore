@@ -2,5 +2,5 @@ densenet/
 googlenet/
 graphs/
 resnet/
-!trained_models/
+trained_models/
 vggnet/
