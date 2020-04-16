@@ -150,3 +150,4 @@ epoch 50
 Train Loss: 0.103893, Acc: 96.781250
 Valid Loss: 0.504026, Acc: 88.155977
 Best Accuracy for validation : 0.903426 at epoch 025
+epochs:50

@@ -1,13 +1,11 @@
 import torch
 from torchvision import datasets, models, transforms
 import torch.nn as nn
-import torch.optim as optim
 from torch.utils.data import DataLoader
 import time
 import numpy as np
 import matplotlib.pyplot as plt
 import models
-import torch.nn.functional as F
 import argparse
 from tqdm import tqdm
 import sys
@@ -15,6 +13,7 @@ import os
 from util import log
 from tensorboardX import SummaryWriter
 
+# 定义参数
 parser=argparse.ArgumentParser()
 parser.add_argument('--epochs',default=50)
 parser.add_argument('--bs',default=16,help='batch size',type=int)
@@ -22,7 +21,7 @@ parser.add_argument('--lr',default=0.0002,help='learning rate of optimizer',type
 parser.add_argument('--wd',default=0.0001,help='weight decay of optimizer')
 parser.add_argument('--seed',default=41,help='',type=int)
 parser.add_argument('--num_class',default=102,help='caltech101 ',type=int)
-parser.add_argument('--model_type',default='resnet50',help='the choice of model option like:mobilenetv2,shufflenetv2_x1_0，vgg16_bn, resnet50,googlenet,densenet121')
+parser.add_argument('--model_type',default='vgg16_bn',help='the choice of model option like:mobilenetv2,shufflenetv2_x1_0，vgg16_bn, resnet50,googlenet,densenet121')
 parser.add_argument('--schedule',default=[100],help='到第几轮时降低学习率')
 parser.add_argument('--gamma',default=0.01,help='学习率下降的倍数')
 parser.add_argument('--log',default='./result_log/new',help='保存日志文件的地址')
@@ -91,8 +90,8 @@ def loaddata():
     print('train_data_size : '+str(train_data_size),'valid_data_size : '+str(valid_data_size))
     return train_data_size,train_dataloader,valid_data_size,val_dataloader
 
-def ResNet50():
-    net = models.resnet50(pretrained=True)
+def ResNet50(pretrained=True):
+    net = models.resnet50(pretrained=pretrained)
     for param in net.parameters():
         param.requires_grad = False
     fc_inputs = net.fc.in_features
@@ -104,8 +103,9 @@ def ResNet50():
         nn.LogSoftmax(dim=1)
     )
     return net
-def MobileNetV2():
-    net = models.mobilenet_v2(pretrained=True)
+
+def MobileNetV2(pretrained=True):
+    net = models.mobilenet_v2(pretrained=pretrained)
     for param in net.parameters():
         param.requires_grad = False
     net.classifier = nn.Sequential(
@@ -114,8 +114,8 @@ def MobileNetV2():
     )
     return net
 
-def ShuffleNetV2_x1_0():
-    net = models.shufflenet_v2_x1_0(pretrained=True)
+def ShuffleNetV2_x1_0(pretrained=True):
+    net = models.shufflenet_v2_x1_0(pretrained=pretrained)
     for param in net.parameters():
         param.requires_grad = False
     fc_inputs = net.fc.in_features
@@ -131,9 +131,8 @@ def ShuffleNetV2_x1_0():
     )
     return net
 
-
-def GoogleNet():
-    net = models.googlenet(pretrained=True)
+def GoogleNet(pretrained=True):
+    net = models.googlenet(pretrained=pretrained)
     for param in net.parameters():
         param.requires_grad = False
     fc_inputs = net.fc.in_features
@@ -146,56 +145,36 @@ def GoogleNet():
     )
     return net
 
-class DenseNet121(nn.Module):
-    def __init__(self, num_classes=args.num_class):
-        super(DenseNet121, self).__init__()
-        net = models.densenet121(pretrained=True)
-        for param in net.parameters():
-            param.requires_grad = False
-        fc_inputs = net.classifier.in_features
-        self.features = net.features#必须是net.features不能是net
-        self.classifier = nn.Sequential(
+def DenseNet121(pretrained=True):
+    net = models.densenet121(pretrained=pretrained)
+    for param in net.parameters():
+        param.requires_grad = False
+    fc_inputs = net.classifier.in_features
+    net.classifier = nn.Sequential(
             nn.Linear(fc_inputs, 1024),
             nn.ReLU(True),
             nn.Dropout(),
             nn.Linear(1024, 512),
             nn.ReLU(True),
             nn.Dropout(),
-            nn.Linear(512, num_classes)
+            nn.Linear(512, args.num_class)
         )
+    return net
 
-    def forward(self, x):
-        features = self.features(x)
-        out = F.relu(features, inplace=True)
-        out = F.adaptive_avg_pool2d(out, (1, 1))
-        out = torch.flatten(out, 1)
-        out = self.classifier(out)
-        return out
-
-class VGG16_BN(nn.Module):
-    def __init__(self, num_classes=args.num_class):
-        super(VGG16_BN, self).__init__()
-        net = models.vgg16_bn(pretrained=True)
-        for param in net.parameters():
-            param.requires_grad = False
-        self.features = net.features
-        self.avgpool = nn.AdaptiveAvgPool2d((7, 7))
-        self.classifier = nn.Sequential(
+def VGG16_BN(pretrained=True):
+    net = models.vgg16_bn(pretrained=pretrained)
+    for param in net.parameters():
+        param.requires_grad = False
+    net.classifier = nn.Sequential(
             nn.Linear(512 * 7 * 7, 512),
             nn.ReLU(True),
             nn.Dropout(),
             nn.Linear(512, 268),
             nn.ReLU(True),
             nn.Dropout(),
-            nn.Linear(268, num_classes),
+            nn.Linear(268, args.num_class)
         )
-
-    def forward(self, x):
-        x = self.features(x)
-        x = self.avgpool(x)
-        x = x.view(x.size(0), -1)
-        x = self.classifier(x)
-        return x
+    return net
 
 def train_and_valid(model,train_data_size,train_dataloader,valid_data_size,val_dataloader,loss_function, optimizer):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu") #若有gpu可用则用gpu
@@ -300,6 +279,7 @@ def train_and_valid(model,train_data_size,train_dataloader,valid_data_size,val_d
     print("Best Accuracy for validation : {:.6f} at epoch {:03d}".format(best_acc, best_epoch))
 
     return best_model, record
+
 def only_valid(model,valid_data_size,val_dataloader,loss_function):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu") #若有gpu可用则用gpu
     model.to(device)
@@ -328,8 +308,6 @@ def only_valid(model,valid_data_size,val_dataloader,loss_function):
     avg_valid_loss = valid_loss / valid_data_size
     avg_valid_acc = valid_acc / valid_data_size
     print('avg_valid_loss',avg_valid_loss,'avg_valid_acc',avg_valid_acc)
-    
-
 
 def save_acc_loss_image(record):
     record = np.array(record)
@@ -354,24 +332,24 @@ if __name__=='__main__':
     train_data_size,train_dataloader,valid_data_size,val_dataloader = loaddata()
     # 选择模型
     if args.model_type == 'vgg16_bn':
-        model = VGG16_BN()
+        model = VGG16_BN(pretrained=False)
     elif args.model_type == 'resnet50':
-        model = ResNet50()
+        model = ResNet50(pretrained=False)
     elif args.model_type == 'densenet121':
-        model = DenseNet121()
+        model = DenseNet121(pretrained=False)
     elif args.model_type == 'googlenet':
-        model = GoogleNet()
+        model = GoogleNet(pretrained=False)
     elif args.model_type == 'shufflenetv2_x1_0':
-        model = ShuffleNetV2_x1_0()
+        model = ShuffleNetV2_x1_0(pretrained=False)
     elif args.model_type == 'mobilenetv2':
-        model = MobileNetV2()
+        model = MobileNetV2(pretrained=False)
     else:
         print('error:no model')
         sys.exit()
     # 定义损失函数
     loss_func = nn.CrossEntropyLoss()
-    #
-    model.load_state_dict(torch.load(args.model_save_dir+'resnet50.pth'))
+    # 加载训练好的模型参数
+    model.load_state_dict(torch.load(args.model_save_dir+args.model_type+'.pth'))
     # 验证
     only_valid(model,valid_data_size,val_dataloader,loss_func)
 
