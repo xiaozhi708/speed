@@ -196,15 +196,7 @@ class ShuffleNetV2(nn.Module):
         return x
     # 为float_model
     def forward(self, x):
-        x = self.conv1(x)
-        x = self.maxpool(x)
-        x = self.stage2(x)
-        x = self.stage3(x)
-        x = self.stage4(x)
-        x = self.conv5(x)
-        x = x.mean([2, 3])  # globalpool
-        x = self.fc(x)
-        return x
+        return self._forward_impl(x)
     # 为float_model
     def fuse_model(self):
         r"""Fuse conv/bn/relu modules in shufflenetv2 model
@@ -228,7 +220,7 @@ class ShuffleNetV2(nn.Module):
                     [["0", "1", "2"], ["3", "4"], ["5", "6", "7"]],
                     inplace=True,
                 )
-            if type(m) == QuantizableShuffleNetV2:
+            if type(m) == ShuffleNetV2:
                 torch.quantization.fuse_modules(m.fc, [["0", "1"], ["3", "4"]], inplace=True)
 
 class QuantizableInvertedResidual(InvertedResidual):
@@ -425,14 +417,14 @@ float_model.to('cpu')
 # while also improving numerical accuracy. While this can be used with any model, this is
 # especially common with quantized models.
 
-# print('\n Inverted Residual Block: Before fusion \n\n', float_model.layer1)
+print('\n Inverted Residual Block: Before fusion \n\n', float_model.stage2)
 float_model.eval()
 
 # Fuses modules
 float_model.fuse_model()
 
 # Note fusion of Conv+BN+Relu and Conv+Relu
-# print('\n Inverted Residual Block: After fusion\n\n',float_model.layer1)
+print('\n Inverted Residual Block: After fusion\n\n',float_model.stage2)
 
 ######################################################################
 # Finally to get a "baseline" accuracy, let's see the accuracy of our un-quantized model
@@ -483,7 +475,7 @@ torch.quantization.prepare(myModel, inplace=True)
 
 # Calibrate first
 print('Post Training Quantization Prepare: Inserting Observers')
-# print('\n Inverted Residual Block:After observer insertion \n\n', myModel.layer1)
+print('\n Inverted Residual Block:After observer insertion \n\n', myModel.stage2)
 
 # Calibrate with the training set
 evaluate(myModel, criterion, data_loader, neval_batches=num_calibration_batches)
@@ -492,7 +484,7 @@ print('Post Training Quantization: Calibration done')
 # Convert to quantized model
 torch.quantization.convert(myModel, inplace=True)
 print('Post Training Quantization: Convert done')
-# print('\n Inverted Residual Block: After fusion and quantization, note fused modules: \n\n',myModel.layer1)
+print('\n Inverted Residual Block: After fusion and quantization, note fused modules: \n\n',myModel.stage2)
 
 print("Size of model after quantization")
 print_size_of_model(myModel)
