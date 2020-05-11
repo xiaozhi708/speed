@@ -5,3 +5,16 @@ mobilenetv2.pth filter=lfs diff=lfs merge=lfs -text
 resnet50.pth filter=lfs diff=lfs merge=lfs -text
 shufflenetv2_x1_0.pth filter=lfs diff=lfs merge=lfs -text
 vgg16_bn.pth filter=lfs diff=lfs merge=lfs -text
+densenet121_quantization_scripted.pth filter=lfs diff=lfs merge=lfs -text
+densenet121_quantization_scripted_quantized.pth filter=lfs diff=lfs merge=lfs -text
+googlenet_quantization_scripted.pth filter=lfs diff=lfs merge=lfs -text
+googlenet_quantization_scripted_quantized.pth filter=lfs diff=lfs merge=lfs -text
+mobilenetv2_quantization_scripted.pth filter=lfs diff=lfs merge=lfs -text
+mobilenetv2_quantization_scripted_quantized.pth filter=lfs diff=lfs merge=lfs -text
+resnet50_quantization_scripted.pth filter=lfs diff=lfs merge=lfs -text
+resnet50_quantization_scripted_quantized.pth filter=lfs diff=lfs merge=lfs -text
+shufflenetv2_x1_0_quantization_scripted.pth filter=lfs diff=lfs merge=lfs -text
+shufflenetv2_x1_0_quantization_scripted_quantized.pth filter=lfs diff=lfs merge=lfs -text
+vgg16_bn_quantization_scripted.pth filter=lfs diff=lfs merge=lfs -text
+vgg16_bn_quantization_scripted_quantized.pth filter=lfs diff=lfs merge=lfs -text
+
