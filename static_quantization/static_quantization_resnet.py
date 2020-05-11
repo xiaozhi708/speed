@@ -262,6 +262,7 @@ class ResNet50(nn.Module):
         x = torch.flatten(x, 1)
         x = self.fc(x)
         return x
+
 class QuantizableResNet(ResNet50):
 
     def __init__(self, *args, **kwargs):
@@ -292,9 +293,6 @@ class QuantizableResNet(ResNet50):
                 m.fuse_model()
             if type(m) == ResNet50:
                 torch.quantization.fuse_modules(m.fc,['0','1'])
-
-
-
 
 ######################################################################
 # 2. Helper functions
@@ -415,17 +413,14 @@ def loaddata(train_directory,valid_directory,train_batch_size,eval_batch_size):
 # Next, we'll load in the pre-trained MobileNetV2 model. We provide the URL to download the data from in ``torchvision``
 # `here <https://github.com/pytorch/vision/blob/master/torchvision/models/mobilenet.py#L9>`_.
 
-# data_path = '/home/tongxueqing/tong/tutorials/advanced_source/data/imagenet_1k'
-saved_model_dir = '/data4/tong/tong/quantization/save/trained_models/'
+saved_model_dir = '../trained_models/'
 float_model_file = 'resnet50.pth'
 scripted_float_model_file = 'resnet50_quantization_scripted.pth'
 scripted_quantized_model_file = 'resnet50_quantization_scripted_quantized.pth'
-train_directory='/data4/tong/tong/speed/Caltech/train'
-valid_directory='/data4/tong/tong/speed/Caltech/val'
+train_directory='../Caltech/train'
+valid_directory='../Caltech/val'
 train_batch_size = 30
 eval_batch_size = 30
-# train_batch_size = 30
-# eval_batch_size = 30
 
 # data_loader, data_loader_test = prepare_data_loaders(data_path)
 data_loader, data_loader_test = loaddata(train_directory,valid_directory,train_batch_size,eval_batch_size)

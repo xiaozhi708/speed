@@ -222,7 +222,7 @@ class Inception(nn.Module):
             nn.MaxPool2d(kernel_size=3, stride=1, padding=1, ceil_mode=True),
             BasicConv2d(in_channels, pool_proj, kernel_size=1)
         )
-        self.cat = nn.quantized.FloatFunctional()
+        # self.cat = nn.quantized.FloatFunctional()
     def forward(self, x):
         branch1 = self.branch1(x)
         branch2 = self.branch2(x)
@@ -230,8 +230,8 @@ class Inception(nn.Module):
         branch4 = self.branch4(x)
 
         outputs = [branch1, branch2, branch3, branch4]
-        #return torch.cat(outputs, 1)
-        return self.cat.cat(outputs,1)
+        return torch.cat(outputs, 1)
+        # return self.cat.cat(outputs,1)
 
 class BasicConv2d(nn.Sequential):
     def __init__(self, in_channels, out_channels, **kwargs):
@@ -239,8 +239,8 @@ class BasicConv2d(nn.Sequential):
             nn.Conv2d(in_channels, out_channels, bias=False, **kwargs),
             nn.BatchNorm2d(out_channels, eps=0.001),
             # Replace with ReLU###inplace=True/False
-            nn.ReLU(inplace=False)
-            # nn.ReLU(inplace=True)
+            # nn.ReLU(inplace=False)
+            nn.ReLU(inplace=True)
         )
     # def __init__(self, in_channels, out_channels, **kwargs):
     #     super(BasicConv2d, self).__init__()
@@ -474,17 +474,14 @@ def loaddata(train_directory,valid_directory,train_batch_size,eval_batch_size):
 # Next, we'll load in the pre-trained MobileNetV2 model. We provide the URL to download the data from in ``torchvision``
 # `here <https://github.com/pytorch/vision/blob/master/torchvision/models/mobilenet.py#L9>`_.
 
-# data_path = '/home/tongxueqing/tong/tutorials/advanced_source/data/imagenet_1k'
-saved_model_dir = '/home/tongxueqing/tong/quantization/saves/'
+saved_model_dir = '../trained_models/'
 float_model_file = 'googlenet.pth'
 scripted_float_model_file = 'googlenet_quantization_scripted.pth'
 scripted_quantized_model_file = 'googlenet_quantization_scripted_quantized.pth'
-train_directory='/home/tongxueqing/tong/speed/Caltech/train'
-valid_directory='/home/tongxueqing/tong/speed/Caltech/val'
+train_directory='../Caltech/train'
+valid_directory='../Caltech/val'
 train_batch_size = 30
 eval_batch_size = 30
-# train_batch_size = 30
-# eval_batch_size = 30
 
 # data_loader, data_loader_test = prepare_data_loaders(data_path)
 data_loader, data_loader_test = loaddata(train_directory,valid_directory,train_batch_size,eval_batch_size)

@@ -325,6 +325,7 @@ if __name__=='__main__':
     # 选择模型
     if args.model_type == 'vgg16_bn':
         model = VGG16_BN()
+        print(model)
     elif args.model_type == 'resnet50':
         model = ResNet50()
     elif args.model_type == 'densenet121':

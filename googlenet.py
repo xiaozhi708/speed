@@ -101,7 +101,6 @@ def ResNet50():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(256, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 def MobileNetV2():
@@ -127,7 +126,6 @@ def ShuffleNetV2_x1_0():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(2048, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 
@@ -142,7 +140,6 @@ def GoogleNet():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(256, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 
@@ -331,6 +328,7 @@ if __name__=='__main__':
         model = DenseNet121()
     elif args.model_type == 'googlenet':
         model = GoogleNet()
+        print(model)
     elif args.model_type == 'shufflenetv2_x1_0':
         model = ShuffleNetV2_x1_0()
     elif args.model_type == 'mobilenetv2':

@@ -101,7 +101,6 @@ def ResNet50():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(256, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 def MobileNetV2():
@@ -127,7 +126,6 @@ def ShuffleNetV2_x1_0():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(2048, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 
@@ -142,7 +140,6 @@ def GoogleNet():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(256, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 
@@ -153,6 +150,7 @@ class DenseNet121(nn.Module):
         for param in net.parameters():
             param.requires_grad = False
         fc_inputs = net.classifier.in_features
+        print(fc_inputs)
         self.features = net.features#必须是net.features不能是net
         self.classifier = nn.Sequential(
             nn.Linear(fc_inputs, 1024),
@@ -329,6 +327,7 @@ if __name__=='__main__':
         model = ResNet50()
     elif args.model_type == 'densenet121':
         model = DenseNet121()
+        print(model)
     elif args.model_type == 'googlenet':
         model = GoogleNet()
     elif args.model_type == 'shufflenetv2_x1_0':

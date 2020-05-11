@@ -365,17 +365,14 @@ def loaddata(train_directory,valid_directory,train_batch_size,eval_batch_size):
 # Next, we'll load in the pre-trained MobileNetV2 model. We provide the URL to download the data from in ``torchvision``
 # `here <https://github.com/pytorch/vision/blob/master/torchvision/models/mobilenet.py#L9>`_.
 
-# data_path = '/home/tongxueqing/tong/tutorials/advanced_source/data/imagenet_1k'
-saved_model_dir = '/home/tongxueqing/tong/speed/quantization/saves/'
+saved_model_dir = '../trained_models/'
 float_model_file = 'vgg16_bn.pth'
 scripted_float_model_file = 'vgg16_bn_quantization_scripted.pth'
 scripted_quantized_model_file = 'vgg16_bn_quantization_scripted_quantized.pth'
-train_directory='/home/tongxueqing/tong/speed/Caltech/train'
-valid_directory='/home/tongxueqing/tong/speed/Caltech/val'
+train_directory='../Caltech/train'
+valid_directory='../Caltech/val'
 train_batch_size = 30
 eval_batch_size = 30
-# train_batch_size = 30
-# eval_batch_size = 30
 
 # data_loader, data_loader_test = prepare_data_loaders(data_path)
 data_loader, data_loader_test = loaddata(train_directory,valid_directory,train_batch_size,eval_batch_size)
@@ -400,7 +397,7 @@ print('\n float_model.features: After fusion\n\n',float_model.features[1])
 # Finally to get a "baseline" accuracy, let's see the accuracy of our un-quantized model
 # with fused modules
 
-num_eval_batches = 10
+num_eval_batches = 40
 
 print("Size of baseline model")
 print_size_of_model(float_model)
@@ -428,7 +425,7 @@ torch.jit.save(torch.jit.script(float_model), saved_model_dir + scripted_float_m
 # this additional step allows us to pass quantized values between operations instead of converting these
 # values to floats - and then back to ints - between every operation, resulting in a significant speed-up.
 
-num_calibration_batches = 10
+num_calibration_batches = 40
 
 myModel = load_model(saved_model_dir + float_model_file).to('cpu')
 myModel.eval()

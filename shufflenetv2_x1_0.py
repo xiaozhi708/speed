@@ -101,9 +101,9 @@ def ResNet50():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(256, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
+
 def MobileNetV2():
     net = models.mobilenet_v2(pretrained=True)
     for param in net.parameters():
@@ -127,7 +127,6 @@ def ShuffleNetV2_x1_0():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(2048, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 
@@ -142,7 +141,6 @@ def GoogleNet():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(256, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 

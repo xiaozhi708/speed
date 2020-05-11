@@ -96,12 +96,12 @@ def ResNet50():
     for param in net.parameters():
         param.requires_grad = False
     fc_inputs = net.fc.in_features
+    # print(fc_inputs)
     net.fc = nn.Sequential(
         nn.Linear(fc_inputs, 256),
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(256, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 def MobileNetV2():
@@ -127,7 +127,6 @@ def ShuffleNetV2_x1_0():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(2048, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 
@@ -142,7 +141,6 @@ def GoogleNet():
         nn.ReLU(),
         nn.Dropout(0.4),
         nn.Linear(256, args.num_class),
-        nn.LogSoftmax(dim=1)
     )
     return net
 
@@ -327,6 +325,7 @@ if __name__=='__main__':
         model = VGG16_BN()
     elif args.model_type == 'resnet50':
         model = ResNet50()
+        print(model)
     elif args.model_type == 'densenet121':
         model = DenseNet121()
     elif args.model_type == 'googlenet':
