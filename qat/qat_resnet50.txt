@@ -1,0 +1,14 @@
+Size (MB):, 96.156201
+Evaluation accuracy on 1200 images, 89.75
+Elapsed time: 67.46601899464926 ms
+Size (MB):, 96.156201
+Evaluation accuracy on 1200 images, 89.75
+Elapsed time: 67.89034525553384 ms
+Size (MB):, 24.157922
+Evaluation accuracy on 1200 images, 89.16666412353516
+Evaluation accuracy on 1200 images, 89.5
+Size (MB):, 24.601108
+Size (MB):, 24.601108
+Elapsed time: 360.84844907124835 ms
+Elapsed time: 25.195385615030926 ms
+Elapsed time: 24.9763822555542 ms

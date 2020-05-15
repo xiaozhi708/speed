@@ -1,0 +1,10 @@
+Size (MB):, 23.561572
+Size (MB):, 5.953994
+Size (MB):, 23.561572
+Size (MB):, 5.953994
+Epoch 0 :Evaluation accuracy on 1200 images, 87.91666412353516
+Epoch 1 :Evaluation accuracy on 1200 images, 89.16666412353516
+Epoch 2 :Evaluation accuracy on 1200 images, 88.58333587646484
+Epoch 3 :Evaluation accuracy on 1200 images, 87.91666412353516
+Epoch 4 :Evaluation accuracy on 1200 images, 88.91666412353516
+Size (MB):, 6.089428

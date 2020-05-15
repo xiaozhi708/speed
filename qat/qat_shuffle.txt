@@ -1,0 +1,36 @@
+Size (MB):, 56.205288
+Evaluation accuracy on 1200 images, 87.08333587646484
+Size (MB):, 14.136089
+Evaluation accuracy on 1200 images, 78.16666412353516
+Evaluation accuracy on 1200 images, 85.08333587646484
+Size (MB):, 14.378718
+Elapsed time: 26.571388244628906 ms
+Elapsed time: 30.083916982014976 ms
+Epoch 0 :Evaluation accuracy on 1200 images, 84.25
+Epoch 1 :Evaluation accuracy on 1200 images, 86.16666412353516
+Epoch 2 :Evaluation accuracy on 1200 images, 85.08333587646484
+Epoch 3 :Evaluation accuracy on 1200 images, 86.75
+Epoch 4 :Evaluation accuracy on 1200 images, 86.66666412353516
+Size (MB):, 14.378718
+Elapsed time: 36.73982620239258 ms
+Elapsed time: 28.555628458658852 ms
+Elapsed time: 30.430110295613606 ms
+Size (MB):, 56.205288
+Evaluation accuracy on 1200 images, 87.08333587646484
+Size (MB):, 14.136089
+Evaluation accuracy on 1200 images, 78.16666412353516
+Evaluation accuracy on 1200 images, 85.08333587646484
+Size (MB):, 14.378718
+Elapsed time: 27.77054945627848 ms
+Elapsed time: 30.64747174580892 ms
+Epoch 0 :Evaluation accuracy on 1200 images, 84.25
+Epoch 1 :Evaluation accuracy on 1200 images, 86.16666412353516
+Epoch 2 :Evaluation accuracy on 1200 images, 85.08333587646484
+Epoch 3 :Evaluation accuracy on 1200 images, 86.75
+Epoch 4 :Evaluation accuracy on 1200 images, 86.66666412353516
+Size (MB):, 14.378718
+Elapsed time: 34.48841571807861 ms
+Elapsed time: 31.624336242675778 ms
+Elapsed time: 30.677073796590168 ms
+hello
+hello

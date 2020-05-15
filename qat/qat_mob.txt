@@ -1,0 +1,42 @@
+Evaluation accuracy on 1200 images, 89.92
+Evaluation accuracy on 1200 images, 69.25
+Evaluation accuracy on 1200 images, 85.33
+Elapsed time: 32.54106839497884 ms
+Elapsed time: 14.269941647847494 ms
+
+Evaluation accuracy on 1200 images, 89.92
+Evaluation accuracy on 1200 images, 69.25
+Evaluation accuracy on 1200 images, 85.33
+Elapsed time: 33.37832450866699 ms
+Elapsed time: 14.095441500345865 ms
+Epoch 0 :Evaluation accuracy on 1200 images, 84.0
+Evaluation accuracy on 1200 images, 89.92
+Evaluation accuracy on 1200 images, 69.25
+Evaluation accuracy on 1200 images, 85.33
+Elapsed time: 33.01665782928467 ms
+Elapsed time: 13.972331682840982 ms
+Epoch 0 :Evaluation accuracy on 1200 images, 84.0
+Evaluation accuracy on 1200 images, 89.92
+Evaluation accuracy on 1200 images, 69.25
+Evaluation accuracy on 1200 images, 85.33
+Elapsed time: 33.219923973083496 ms
+Elapsed time: 14.859228134155273 ms
+Epoch 0 :Evaluation accuracy on 1200 images, 84.16666412353516
+Epoch 1 :Evaluation accuracy on 1200 images, 84.75
+Epoch 2 :Evaluation accuracy on 1200 images, 85.41666412353516
+Epoch 3 :Evaluation accuracy on 1200 images, 85.25
+Epoch 4 :Evaluation accuracy on 1200 images, 86.16666412353516
+
+Evaluation accuracy on 1200 images, 89.92
+Evaluation accuracy on 1200 images, 69.25
+Evaluation accuracy on 1200 images, 85.33
+Elapsed time: 33.383049964904785 ms
+Elapsed time: 14.554864565531412 ms
+Epoch 0 :Evaluation accuracy on 1200 images, 84.16666412353516
+Epoch 1 :Evaluation accuracy on 1200 images, 84.75
+Epoch 2 :Evaluation accuracy on 1200 images, 85.41666412353516
+Epoch 3 :Evaluation accuracy on 1200 images, 85.25
+Epoch 4 :Evaluation accuracy on 1200 images, 86.16666412353516
+Elapsed time: 63.71613025665283 ms
+Elapsed time: 14.863888422648111 ms
+Elapsed time: 15.303541819254557 ms
